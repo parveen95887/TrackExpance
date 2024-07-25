@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="style.css" th:href="@{/style.css}">
+</head>
+<body>
+    <div class="container-fluid vh-100 d-flex bg-dark justify-content-center align-items-center">
+        <div class="row w-100">
+            <div class="col-md-6 offset-md-3">
+                <div class="card p-4">
+                    <h2 class="text-center mb-4">Register</h2>
+                
+                      <form th:action="@{/users/registerUser}" method="post"  th:object="${user}">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name" th:field="*{name}">
+                            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email" th:field="*{email}">
+                            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" name="password"id="password" placeholder="Enter your password" th:field="*{password}">
+                            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

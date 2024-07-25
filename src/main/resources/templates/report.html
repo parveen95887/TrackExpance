@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Total Expenses</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .form-control {
+            border-radius: 0.25rem;
+        }
+        .btn-primary {
+            border-radius: 0.25rem;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+        h1, h2 {
+            color: #343a40;
+        }
+        .card {
+            border-radius: 0.25rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Total Expenses</h1>
+        
+      <a href="/users/index" class="btn btn-success mb-2">Go-To-Index</a>
+        <form th:action="@{/expenses/getreport}" method="get" class="mb-4">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="startDate">Start Date:</label>
+                    <input type="date" id="startDate" name="startDate" class="form-control" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="endDate">End Date:</label>
+                    <input type="date" id="endDate" name="endDate" class="form-control" required>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Calculate Total Expenses</button>
+            </div>
+            <div class="text-center mt-3">
+             <p th:text="${totalExpenses}"></p>
+            </div>
+        </form>
+        
+        <div th:if="${totalExpenses != null}" class="card">
+            <div class="card-body">
+                <h2 class="text-center">Total Expenses between <span th:text="${startDate}"></span> and <span th:text="${endDate}"></span>:</h2>
+                
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <canvas id="expensesChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+                <script>
+                    var ctx = document.getElementById('expensesChart').getContext('2d');
+                    var expensesChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Total Expenses'], 
+                            datasets: [{
+                                label: 'Expenses',
+                                data: [[${totalExpenses}]],
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+          <div th:unless="${totalExpenses > 0}">
+                    <p class="text-center text-danger">No records found</p>
+                </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

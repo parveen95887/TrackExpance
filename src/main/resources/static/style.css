@@ -1,0 +1,75 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.left
+{
+  background-color: black;
+  color:white;	
+  position:fixed;
+  height: 100vh;
+}
+#ab
+{
+  text-align:center;	
+  margin-top:30px;
+}
+#ab>li{
+	padding:20px;
+}
+#section1 .row{
+  height: 100vh;
+  background-color:;
+}.logo
+{
+  margin-top:10px;
+  padding: 10px;
+  background-color: aqua;
+}
+a{
+  text-decoration: none;
+  color: white;
+}
+
+a:hover{
+  text-decoration: none;
+  color: white;
+}
+li{
+  list-style: none;
+}
+
+/* profilepage style */
+.bg-dark 
+{
+  background-color: #343a40 !important;
+}
+ .fixed-sidebar {
+            position: fixed;
+            height: 100%;
+            overflow-y: auto;
+        }
+        .content {
+            margin-left: 16.6667%;
+            padding: 20px;
+        }
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .profile-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+/* editprofile pag */ 
+.card
+ {
+   width:70%; 
+   justify-content: center;
+   margin-top: 10%;
+   margin-left:10%;
+   padding: 1%;
+ }

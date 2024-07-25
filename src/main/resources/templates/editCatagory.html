@@ -1,0 +1,53 @@
+ 
+ <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Responsive Layout</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css" th:href="@{/style.css}">
+</head>
+<body>
+    <div class="container-fluid" id="section1">
+        <div class="row d-flex">
+            <div class="col-md-2 bg-dark text-white text-align-center">
+                <div class="logo text-center">
+                  <li><a href="/users/profile"><i class="fas fa-user mr-2"></i>John Doe</a></li>
+                </div>
+                <ul class="list-unstyled" id="ab">
+                    <li><a href="/users/index">DashBoard<i class="fas fa-tachometer-alt ml-2"></i></a></li>
+                    <li><a href="/incomes/getincome">Income<i class="fas fa-dollar-sign ml-2"></i></a></li>
+                    <li><a href="/savinggoals/getall"><i class="fas fa-head-side-gear"></i>SavingGoals</a></li>
+                    <li><a href="/expenses/getreport">Report<i class="fas fa-file-alt ml-2"></i></a></li>
+                    <li><a href="/catagories/getcatagorylist">Categories</a></li><br>
+                    <li><a href="/users/logout">LogOut</a></li>
+                </ul>
+            </div>
+            <div class="col-md-10 bg-danger">
+                <div class="card p-4" style="width:60%; margin-top: 2%; margin-left: 20%;">
+                    <h2 class="text-center mb-4">Update Category</h2>
+                    <form th:action="@{/catagories/update/{id}(id=${category.categoryId})}" th:object="${category}" method="post">
+                        <div class="form-group">
+                            <label for="categoryName">Name</label>
+                            <input type="text" class="form-control" id="categoryName" placeholder="Enter category name" th:field="*{categoryName}">
+                            <div th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}" class="text-danger"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" id="description" rows="3" placeholder="Enter description" th:field="*{description}"></textarea>
+                            <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+ 
